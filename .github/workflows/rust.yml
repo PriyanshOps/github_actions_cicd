@@ -38,6 +38,10 @@ jobs:
           pwd
           mkdir test-project
           ls -la
+          
+  test-image-build:
+    uses: PriyanshOps/github_actions_cicd/.github/actions/setup-composite/action.yaml@main
+    
       # - name: Run sccache-cache
       #   uses: mozilla-actions/sccache-action@v0.0.3
       #   with: 
