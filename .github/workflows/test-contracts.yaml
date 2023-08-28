@@ -1,23 +1,20 @@
-# on:  
-#   push:
-#   pull_request:
-#     branches:
-#       - main
+name: deploy
 
-# name: test contracts
+on: 
+  workflow_call:
 
-# jobs:
-#   check:
-#     name: Test Contracts
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#         with:
-#           submodules: recursive
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    using: "composite"
+    # Defining the action steps(Just one step to be simple)
+    steps:
+    - name: deploy stack
+      uses: Swatinem/rust-cache@v2
 
-#       - name: Install Foundry
-#         uses: foundry-rs/foundry-toolchain@v1
-
-#       - name: Run tests
-#         run: forge test -vvv
-#         working-directory: ./contracts
+    - name: Create folder
+      run: |
+        pwd
+        ls -la
+        mkdir test-template
+        ls -la
