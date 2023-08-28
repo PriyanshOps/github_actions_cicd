@@ -33,7 +33,8 @@ jobs:
 
   lint:
     name: Call Lint
-    uses: .github/workflows/test-contracts.yaml 
+    uses: PriyanshOps/github_actions_cicd/.github/actions/setup-composite/action.yaml@main
+    
                             
   # test-image-build:
   #   uses: .github/workflows/test-contracts.yaml 
