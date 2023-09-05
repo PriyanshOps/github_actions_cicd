@@ -11,3 +11,10 @@ jobs:
           pwd
           mkdir test-mkdir
           ls -la
+
+      - name: Access the test-project folder from the workspace
+        run: |
+          # Navigate to the workspace directory where test-project is persisted
+          cd ${{ runner.workspace }}
+          # Now you can access the test-project folder
+          ls -la
