@@ -1,0 +1,39 @@
+name: Workflow B
+
+on:
+  workflow_run:
+    workflows: ["Workflow A"]
+    types:
+      - completed
+
+jobs:
+  use_shared_file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display Shared File Content
+        run: |
+          echo "$SHARED_FILE" > shared_file.txt
+          cat shared_file.txt
+
+
+# on:
+#   workflow_call:
+
+# jobs:
+#   riscv-assembly:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Run RISC-V tests
+#         run: |
+#           # Your test commands go her
+#           pwd
+#           mkdir test-mkdir
+#           ls -la
+
+#       - name: Access the test-project folder from the workspace
+#         run: |
+#           # Navigate to the workspace directory where test-project is persisted
+#           cd ${{ runner.workspace }}
+#           # Now you can access the test-project folder
+#           ls -la
