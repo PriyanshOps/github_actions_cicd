@@ -8,12 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Set environment variable
+      - name: Create shared_file.txt
+        run: echo "This is the content of the file" > shared_file.txt
+
+      - name: Store content in an environment file
         run: |
-          echo "This is the content of the file" > shared_file.txt
-          echo "::set-env name=SHARED_FILE::$(cat shared_file.txt)"
+          echo "SHARED_FILE=$(cat shared_file.txt)" >> $GITHUB_ENV
 
 # name: test-template 
 
