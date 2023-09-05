@@ -24,6 +24,7 @@ jobs:
 
   lint:
     name: Call Lint
+    needs: build-release 
     uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include
     # uses: ./.github/workflows/misp-template.yml@test-include
   # riscv-assembly:

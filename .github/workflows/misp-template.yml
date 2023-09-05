@@ -5,9 +5,6 @@ jobs:
   riscv-assembly:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout RISC-V code
-        uses: actions/checkout@v2
-
       - name: Run RISC-V tests
         run: |
           # Your test commands go her
