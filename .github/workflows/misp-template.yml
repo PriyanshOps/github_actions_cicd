@@ -6,12 +6,6 @@ on:
     types:
       - completed
 
-
-on:
-  workflow_run:
-    workflows: ["Create File in Rust Workflow"]
-    types:
-      - completed
 jobs:
   use-file:
     runs-on: ubuntu-latest
