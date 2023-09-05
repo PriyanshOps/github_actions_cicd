@@ -16,5 +16,5 @@ jobs:
       - name: Create Binary File
         run: echo -n -e \\x01\\x02\\x03 > my_folder/binary_file.bin
 
-      - name: Store File Path in an Environment Variable
-        run: echo "SHARED_BINARY_FILE=${{ github.workspace }}/my_folder/binary_file.bin" >> $GITHUB_ENV
+      - name: Create Zip Archive
+        run: zip my_folder/binary_file.zip my_folder/binary_file.bin

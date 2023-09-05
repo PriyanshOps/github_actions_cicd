@@ -7,17 +7,17 @@ on:
       - completed
 
 jobs:
-  use_shared_binary_file:
+  use_shared_zip_file:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Load binary file path from environment variable
+      - name: Load zip file path from temporary file
         run: |
-          SHARED_BINARY_FILE="${{ env.SHARED_BINARY_FILE }}"
-          TEST_FOLDER="${{ github.workspace }}/test_folder"
-          mkdir -p "$TEST_FOLDER"
-          cp "$SHARED_BINARY_FILE" "$TEST_FOLDER"
+          SHARED_ZIP_FILE="${{ github.workspace }}/my_folder/binary_file.zip"
+          DESTINATION_FOLDER="${{ github.workspace }}/test_folder"
+          mkdir -p "$DESTINATION_FOLDER"
+          mv "$SHARED_ZIP_FILE" "$DESTINATION_FOLDER/"
 
       - name: List contents of the test folder
         run: |
-          ls -la "$TEST_FOLDER"
+          ls -la "${{ github.workspace }}/test_folder"
