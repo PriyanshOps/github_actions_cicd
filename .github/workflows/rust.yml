@@ -24,7 +24,7 @@ jobs:
         working-directory: ${{ runner.workspace }}
 
   mips-assembly:
-    extends: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include 
+    extends: ./.github/workflows/misp-template.yml@test-include 
 
   # mips-assembly:
   #   runs-on: ubuntu-latest
