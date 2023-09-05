@@ -14,7 +14,10 @@ jobs:
       - name: Load binary file path from environment variable
         run: |
           SHARED_BINARY_FILE="${{ env.SHARED_BINARY_FILE }}"
+          TEST_FOLDER="${{ github.workspace }}/test_folder"
+          mkdir -p "$TEST_FOLDER"
+          cp "$SHARED_BINARY_FILE" "$TEST_FOLDER"
 
-      - name: Display Binary File Content
+      - name: List contents of the test folder
         run: |
-          cat "$SHARED_BINARY_FILE"
+          ls -la "$TEST_FOLDER"
