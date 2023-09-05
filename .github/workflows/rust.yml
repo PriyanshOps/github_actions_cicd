@@ -12,10 +12,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create File
+      # Build your Rust project here
+      - name: Build Rust
         run: |
-          echo "This is a file created in the Rust workflow." > ${{ github.workspace }}/my-file.txt
+          # Replace with your build commands
+          echo "Building Rust project"
+          mkdir -p ${{ github.workspace }}/shared_files
+          touch ${{ github.workspace }}/shared_files/rust_file.txt
 
+      # Move the files to a shared directory within the workspace
+      - name: Move Files
+        run: |
+          mv ${{ github.workspace }}/shared_files ${{ github.workspace }}/shared
+        if: success()
 
 # name: test-template 
 

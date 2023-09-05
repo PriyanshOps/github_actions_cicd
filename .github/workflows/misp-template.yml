@@ -1,25 +1,23 @@
-name: Use File in MIPS Workflow
+name: MIPS Workflow
 
 on:
-  workflow_run:
-    workflows: ["Create File in Rust Workflow"]
-    types:
-      - completed
+  push:
+    branches:
+      - test-include
 
 jobs:
-  use-file:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        ref: test-include
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Display File Contents
-      run: |
-        cat ${{ github.workspace }}/my-file.txt
-
+      # Access the shared files from the workspace
+      - name: Use Shared Files
+        run: |
+          cat ${{ github.workspace }}/shared/rust_file.txt
+        if: success()
 
 # on:
 #   workflow_call:
