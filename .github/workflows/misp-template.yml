@@ -11,4 +11,5 @@ jobs:
       - name: Run RISC-V tests
         run: |
           # Your test commands go her
-          echo "hello"
+          pwd
+          ls -la
