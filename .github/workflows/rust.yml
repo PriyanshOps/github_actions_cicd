@@ -8,83 +8,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Create a directory
+        run: mkdir my_folder
+
       - name: Create shared_file.txt
-        run: echo "This is the content of the file" > shared_file.txt
+        run: echo "This is the content of the file" > my_folder/shared_file.txt
 
-      - name: Store content in an environment file
+      - name: Store folder path and file content in environment variables
         run: |
-          echo "SHARED_FILE=$(cat shared_file.txt)" >> $GITHUB_ENV
-
-# name: test-template 
-
-# on: 
-#   workflow_dispatch:
-#   push:
-#     branches:
-#       - test-include
-
-# permissions:
-#   id-token: write
-#   contents: write
-
-# jobs:
-#   build-release:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Create folder
-#         run: |
-#           pwd
-#           mkdir test-project
-#           touch file.txt
-#           ls -la
-#         working-directory: ${{ runner.workspace }}
-
-#   mips-assembly:
-#     extends: .github/workflows/misp-template.yml@test-include 
-
-  # mips-assembly:
-  #   runs-on: ubuntu-latest
-  #   needs: build-release
-  #   uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include  # Replace with the actual repository and version
-  #   with:
-  #     # Pass the path to the test-project folder as an input to the MIPS assembly action
-  #     test-project-path: ${{ runner.workspace }}/test-project
-
-
-    # steps:
-    #   - name: Checkout MIPS code
-    #     uses: actions/checkout@v2
-
-    #   - name: Access the test-project folder from the workspace
-    #     run: |
-    #       # Navigate to the workspace directory where test-project is persisted
-    #       cd ${{ runner.workspace }}
-    #       # Now you can access the test-project folder
-    #       ls -la
-
-    #   - name: Checkout MIPS assembly action
-    #     uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include  # Replace with the actual repository and version
-    #     with:
-    #       # Pass the path to the test-project folder as an input to the MIPS assembly action
-    #       test-project-path: ${{ runner.workspace }}/test-project
-
-    #   - name: Access the test-project folder from the workspace
-    #     run: |
-    #       ls -la
-    #       # Navigate to the workspace directory where test-project is persisted
-    #       cd ${{ runner.workspace }}
-    #       # Now you can access the test-project folder
-    #       ls -la
-
-    # uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include
-    # uses: ./.github/workflows/misp-template.yml@test-include
-  # riscv-assembly:
-  #   runs-on: ubuntu-latest
-  #   needs: mips-assembly  # Ensure the MIPS job runs before this one
-  #   uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include
-
-# include:
-#   - template: misp-template.yml
-        #   uses: PriyanshOps/github_actions_cicd/.github/actions/setup-composite/action.yaml@main
+          echo "SHARED_FOLDER=my_folder" >> $GITHUB_ENV
+          echo "SHARED_FILE_CONTENT=$(cat my_folder/shared_file.txt)" >> $GITHUB_ENV

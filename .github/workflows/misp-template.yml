@@ -7,32 +7,16 @@ on:
       - completed
 
 jobs:
-  use_shared_file:
+  use_shared_data:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Load folder path and file content from environment variables
+        run: |
+          SHARED_FOLDER="${{ env.SHARED_FOLDER }}"
+          SHARED_FILE_CONTENT="${{ env.SHARED_FILE_CONTENT }}"
+          echo "$SHARED_FILE_CONTENT" > "$SHARED_FOLDER/shared_file.txt"
+
       - name: Display Shared File Content
         run: |
-          echo "$SHARED_FILE" > shared_file.txt
-          cat shared_file.txt
-
-# on:
-#   workflow_call:
-
-# jobs:
-#   riscv-assembly:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Run RISC-V tests
-#         run: |
-#           # Your test commands go her
-#           pwd
-#           mkdir test-mkdir
-#           ls -la
-
-#       - name: Access the test-project folder from the workspace
-#         run: |
-#           # Navigate to the workspace directory where test-project is persisted
-#           cd ${{ runner.workspace }}
-#           # Now you can access the test-project folder
-#           ls -la
+          cat "$SHARED_FOLDER/shared_file.txt"
