@@ -14,4 +14,4 @@ jobs:
         run: echo -n -e \\x01\\x02\\x03 > my_folder/binary_file.bin
 
       - name: Store file path in an environment variable
-        run: echo "SHARED_BINARY_FILE=binary/binary_file.bin" >> $GITHUB_ENV
+        run: echo "SHARED_BINARY_FILE=my_folder/binary_file.bin" >> $GITHUB_ENV
