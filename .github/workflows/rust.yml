@@ -1,30 +1,50 @@
-name: test-template 
+name: Create File in Rust Workflow
 
-on: 
-  workflow_dispatch:
+on:
   push:
     branches:
-      - test-include
-
-permissions:
-  id-token: write
-  contents: write
+      - main
 
 jobs:
-  build-release:
+  create-file:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Create folder
-        run: |
-          pwd
-          mkdir test-project
-          touch file.txt
-          ls -la
-        working-directory: ${{ runner.workspace }}
 
-  mips-assembly:
-    extends: ./.github/workflows/misp-template.yml@test-include 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create File
+      run: |
+        echo "This is a file created in the Rust workflow." > ${{ github.workspace }}/my-file.txt
+
+
+# name: test-template 
+
+# on: 
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - test-include
+
+# permissions:
+#   id-token: write
+#   contents: write
+
+# jobs:
+#   build-release:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Create folder
+#         run: |
+#           pwd
+#           mkdir test-project
+#           touch file.txt
+#           ls -la
+#         working-directory: ${{ runner.workspace }}
+
+#   mips-assembly:
+#     extends: .github/workflows/misp-template.yml@test-include 
 
   # mips-assembly:
   #   runs-on: ubuntu-latest

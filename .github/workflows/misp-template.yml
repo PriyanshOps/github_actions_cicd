@@ -1,20 +1,41 @@
+name: Use File in MIPS Workflow
+
 on:
-  workflow_call:
+  workflow_run:
+    workflows: ["Create File in Rust Workflow"]
+    types:
+      - completed
 
 jobs:
-  riscv-assembly:
+  use-file:
     runs-on: ubuntu-latest
-    steps:
-      - name: Run RISC-V tests
-        run: |
-          # Your test commands go her
-          pwd
-          mkdir test-mkdir
-          ls -la
 
-      - name: Access the test-project folder from the workspace
-        run: |
-          # Navigate to the workspace directory where test-project is persisted
-          cd ${{ runner.workspace }}
-          # Now you can access the test-project folder
-          ls -la
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Display File Contents
+      run: |
+        cat ${{ github.workspace }}/my-file.txt
+
+
+# on:
+#   workflow_call:
+
+# jobs:
+#   riscv-assembly:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Run RISC-V tests
+#         run: |
+#           # Your test commands go her
+#           pwd
+#           mkdir test-mkdir
+#           ls -la
+
+#       - name: Access the test-project folder from the workspace
+#         run: |
+#           # Navigate to the workspace directory where test-project is persisted
+#           cd ${{ runner.workspace }}
+#           # Now you can access the test-project folder
+#           ls -la
