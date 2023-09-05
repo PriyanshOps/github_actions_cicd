@@ -16,7 +16,12 @@ jobs:
           SHARED_ZIP_FILE="${{ github.workspace }}/my_folder/binary_file.zip"
           DESTINATION_FOLDER="${{ github.workspace }}/test_folder"
           mkdir -p "$DESTINATION_FOLDER"
-          mv "$SHARED_ZIP_FILE" "$DESTINATION_FOLDER/"
+          if [ -f "$SHARED_ZIP_FILE" ]; then
+            mv "$SHARED_ZIP_FILE" "$DESTINATION_FOLDER/"
+            echo "Zip file moved successfully."
+          else
+            echo "Zip file does not exist at '$SHARED_ZIP_FILE'."
+          fi
 
       - name: List contents of the test folder
         run: |
