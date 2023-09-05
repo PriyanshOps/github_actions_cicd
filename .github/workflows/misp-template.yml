@@ -9,4 +9,5 @@ jobs:
         run: |
           # Your test commands go her
           pwd
+          mkdir test-mkdir
           ls -la
