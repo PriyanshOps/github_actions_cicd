@@ -22,5 +22,5 @@ jobs:
           mkdir test-project
           ls -la
 
-  include:
-    - template: misp-template.yml
+include:
+  - template: misp-template.yml
