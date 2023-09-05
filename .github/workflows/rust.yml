@@ -20,12 +20,39 @@ jobs:
         run: |
           pwd
           mkdir test-project
+          touch file.txt
           ls -la
+        working-directory: ${{ runner.workspace }}
 
   lint:
-    name: Call Lint
+    runs-on: ubuntu-latest
     needs: build-release 
-    uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include
+    steps:
+      - name: Checkout MIPS code
+        uses: actions/checkout@v2
+
+      - name: Access the test-project folder from the workspace
+        run: |
+          # Navigate to the workspace directory where test-project is persisted
+          cd ${{ runner.workspace }}
+          # Now you can access the test-project folder
+          ls -la
+
+      - name: Checkout MIPS assembly action
+        uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include  # Replace with the actual repository and version
+        with:
+          # Pass the path to the test-project folder as an input to the MIPS assembly action
+          test-project-path: ${{ runner.workspace }}/test-project
+
+      - name: Access the test-project folder from the workspace
+        run: |
+          ls -la
+          # Navigate to the workspace directory where test-project is persisted
+          cd ${{ runner.workspace }}
+          # Now you can access the test-project folder
+          ls -la
+          
+    # uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include
     # uses: ./.github/workflows/misp-template.yml@test-include
   # riscv-assembly:
   #   runs-on: ubuntu-latest
