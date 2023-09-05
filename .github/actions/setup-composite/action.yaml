@@ -17,6 +17,7 @@ jobs:
         ls -la
         mkdir test-template
         ls -la
+        
 # name: Rust
 
 # env:
