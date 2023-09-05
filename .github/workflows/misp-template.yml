@@ -1,3 +1,6 @@
+on:
+  workflow_call:
+    
 jobs:
   riscv-assembly:
     runs-on: ubuntu-latest
