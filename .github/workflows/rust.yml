@@ -3,7 +3,7 @@ name: Workflow A
 on:
   push:
     branches:
-      - test-include
+      - main
 
 jobs:
   build:

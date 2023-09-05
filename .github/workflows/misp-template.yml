@@ -16,7 +16,6 @@ jobs:
           echo "$SHARED_FILE" > shared_file.txt
           cat shared_file.txt
 
-
 # on:
 #   workflow_call:
 
