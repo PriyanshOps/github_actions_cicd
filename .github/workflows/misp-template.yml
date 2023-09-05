@@ -1,23 +1,21 @@
-name: MIPS Workflow
+name: Workflow B
 
 on:
-  push:
-    branches:
-      - test-include
+  workflow_run:
+    workflows: ["Workflow A"]
+    types:
+      - completed
 
 jobs:
-  build:
+  use_shared_file:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Access the shared files from the workspace
-      - name: Use Shared Files
+      - name: Display Shared File Content
         run: |
-          cat ${{ github.workspace }}/shared/rust_file.txt
-        if: success()
+          echo "$SHARED_FILE" > shared_file.txt
+          cat shared_file.txt
+
 
 # on:
 #   workflow_call:
