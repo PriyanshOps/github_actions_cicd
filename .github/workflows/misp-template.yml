@@ -6,6 +6,12 @@ on:
     types:
       - completed
 
+
+on:
+  workflow_run:
+    workflows: ["Create File in Rust Workflow"]
+    types:
+      - completed
 jobs:
   use-file:
     runs-on: ubuntu-latest
@@ -13,6 +19,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: test-include
 
     - name: Display File Contents
       run: |
