@@ -24,7 +24,8 @@ jobs:
 
   lint:
     name: Call Lint
-    uses: ./.github/workflows/misp-template.yml@test-include
+    uses: PriyanshOps/github_actions_cicd/.github/workflows/misp-template.yml@test-include
+    # uses: ./.github/workflows/misp-template.yml@test-include
   # riscv-assembly:
   #   runs-on: ubuntu-latest
   #   needs: mips-assembly  # Ensure the MIPS job runs before this one
