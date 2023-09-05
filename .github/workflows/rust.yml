@@ -10,13 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create a directory
-        run: mkdir my_folder
+      - name: Create Binary File
+        run: echo -n -e \\x01\\x02\\x03 > my_folder/binary_file.bin
 
-      - name: Create shared_file.txt
-        run: echo "This is the content of the file" > my_folder/shared_file.txt
-
-      - name: Store folder path and file content in environment variables
-        run: |
-          echo "SHARED_FOLDER=my_folder" >> $GITHUB_ENV
-          echo "SHARED_FILE_CONTENT=$(cat my_folder/shared_file.txt)" >> $GITHUB_ENV
+      - name: Store file path in an environment variable
+        run: echo "SHARED_BINARY_FILE=binary/binary_file.bin" >> $GITHUB_ENV

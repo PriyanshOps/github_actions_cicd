@@ -7,16 +7,14 @@ on:
       - completed
 
 jobs:
-  use_shared_data:
+  use_shared_binary_file:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Load folder path and file content from environment variables
+      - name: Load binary file path from environment variable
         run: |
-          SHARED_FOLDER="${{ env.SHARED_FOLDER }}"
-          SHARED_FILE_CONTENT="${{ env.SHARED_FILE_CONTENT }}"
-          echo "$SHARED_FILE_CONTENT" > "$SHARED_FOLDER/shared_file.txt"
+          SHARED_BINARY_FILE="${{ env.SHARED_BINARY_FILE }}"
 
-      - name: Display Shared File Content
+      - name: Display Binary File Content
         run: |
-          cat "$SHARED_FOLDER/shared_file.txt"
+          cat "$SHARED_BINARY_FILE"
