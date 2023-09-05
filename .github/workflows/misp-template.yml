@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Load zip file path from temporary file
         run: |
-          SHARED_ZIP_FILE="${{ github.workspace }}/my_folder/binary_file.zip"
+          SHARED_ZIP_FILE=$(cat zip_file_path.tmp)
           DESTINATION_FOLDER="${{ github.workspace }}/test_folder"
           mkdir -p "$DESTINATION_FOLDER"
           if [ -f "$SHARED_ZIP_FILE" ]; then
